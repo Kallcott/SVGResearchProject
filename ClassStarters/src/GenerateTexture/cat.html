@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <svg width="100vw" height="50vh" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- ## 1 Post Proccessing on the Cat -->
+
+        <!-- Generate Tubulence -->
+
+        <!-- Lets Mess with the Cat's Colors -->
+        <!-- Remember Matrix Columns: Red Green Blue Alpha Weight -->
+        <!-- Remember Matrix Rows: Red Green Blue Alpha -->
+        <!-- Try negatives -->
+
+        <!-- ## 2 Generate Dalmation Spots -->
+
+        <!-- Generate Custom Noise -->
+        <!-- Add more detail with numOctaves -->
+        <!-- Use a differnt seed to generate a new pattern -->
+
+        <!-- Select Pixel -->
+
+        <!-- Select the alpha values -->
+
+        <!-- Apply weight's row alpha of 1. 
+              Every pixel will be visible.
+              Every pixel empty value of 0,0,0 (Black)
+             -->
+        <!-- Convert Alpha's value into color (White)-->
+
+        <!-- ## 3 Generate Camo Pattern -->
+
+        <!-- Generate Noise -->
+
+        <!-- Select and Threshold our Color -->
+
+        <!-- Select Red channel -->
+
+        <!-- Select Green Channel -->
+        <!-- Note 2/6 == 1/3 -->
+
+        <!-- Select Blue Channel -->
+
+        <!-- Exclude other channels from each other -->
+        <!-- Note how without -1, our colors burn together -->
+
+        <!-- Colorize using Linear RGB -->
+      </defs>
+      <!-- ##2 Dalmation Texture -->
+      <rect width="50%" height="100%" style="filter: url(#generateTexture)" />
+      <!-- ##3 Camo Texture -->
+      <rect x="50%" width="50%" height="100%" style="filter: url(#generateCamo)" />
+    </svg>
+    <!-- ##1 Edit our Cat -->
+    <img width="50%" height="50%" src="Cat.jpg" style="filter: url(#colorMatrix)" />
+  </body>
+</html>

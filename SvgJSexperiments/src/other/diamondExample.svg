@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+    <path d="
+        m3,40 
+        l7,-10 
+        l7,10 
+        l-7,10 
+        l-7,-10" stroke="red" stroke-width="3" />
+    <path d="m25,40 
+        l7,-10 
+        l7,10 
+        l-7,10 
+        l-7,-10 
+        Z" stroke="red" stroke-width="3" />
+</svg>

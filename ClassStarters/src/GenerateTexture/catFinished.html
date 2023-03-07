@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <svg width="100vw" height="50vh" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <!-- ## 1 Post Proccessing on the Cat -->
+        <filter id="colorMatrix">
+          <!-- Generate Tubulence -->
+          <feTurbulence baseFrequency="0.1" />
+          <!-- Lets Mess with the Cat's Colors -->
+          <!-- Remember Matrix Columns: Red Green Blue Alpha Weight -->
+          <!-- Remember Matrix Rows: Red Green Blue Alpha -->
+          <!-- Try negatives -->
+          <feColorMatrix
+            in="SourceGraphic"
+            type="matrix"
+            values="0 0 0 0 0    
+                    1 -1 -1 0 0    
+                    0 0 0 0 0    
+                    0 0 0 1 0"
+          />
+        </filter>
+
+        <!-- ## 2 Generate Dalmation Spots -->
+        <filter id="generateTexture">
+          <!-- Generate Custom Noise -->
+          <!-- Add more detail with numOctaves -->
+          <!-- Use a differnt seed to generate a new pattern -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="2" seed="asd" />
+          <!-- Select Pixel -->
+          <feComponentTransfer>
+            <!-- Select the alpha values -->
+            <feFuncA type="discrete" tableValues="0 1 0" />
+          </feComponentTransfer>
+          <!-- Apply weight's row alpha of 1. 
+              Every pixel will be visible.
+              Every pixel empty value of 0,0,0 (Black)
+             -->
+          <!-- Convert Alpha's value into color (White)-->
+          <feColorMatrix
+            values="0 0 0 1 0    
+                    0 0 0 1 0    
+                    0 0 0 1 0    
+                    0 0 0 0 1"
+          />
+        </filter>
+
+        <!-- ## 3 Generate Camo Pattern -->
+        <filter id="generateCamo">
+          <!-- Generate Noise -->
+          <feTurbulence type="fractalNoise" baseFrequency="0.006" numOctaves="3" seed="asd" />
+          <!-- Select and Threshold our Color -->
+          <feComponentTransfer>
+            <!-- Select Red channel -->
+            <feFuncR type="discrete" tableValues="0 0 1" />
+            <!-- Select Green Channel -->
+            <!-- Note 2/6 == 1/3 -->
+            <feFuncG type="discrete" tableValues="0 0 0 0 1 1" />
+            <!-- Select Blue Channel -->
+            <feFuncB type="discrete" tableValues="0 1 " />
+          </feComponentTransfer>
+          <!-- Exclude other channels from each other -->
+          <!-- Note how without -1, our colors burn together -->
+          <feColorMatrix
+            values=" 1  0 0 0 0    
+                    -1  1 0 0 0    
+                    -1 -1 1 0 0    
+                     0  0 0 0 1"
+          />
+          <!-- Colorize using Linear RGB -->
+          <feColorMatrix
+            values="-.08  .42  .09 0  .08    
+                    -.17  .35 -.08 0  .17    
+                    -.08  .15 -.04 0  .08    
+                     0    0   0    0   1"
+          />
+        </filter>
+      </defs>
+      <!-- ##2 Dalmation Texture -->
+      <rect width="50%" height="100%" style="filter: url(#generateTexture)" />
+      <!-- ##3 Camo Texture -->
+      <rect x="50%" width="50%" height="100%" style="filter: url(#generateCamo)" />
+    </svg>
+    <!-- ##1 Edit our Cat -->
+    <img width="50%" height="50%" src="Cat.jpg" style="filter: url(#colorMatrix)" />
+  </body>
+</html>

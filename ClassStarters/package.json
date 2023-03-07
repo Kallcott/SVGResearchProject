@@ -1,0 +1,21 @@
+{
+  "name": "ProcedualSvgClassStarters",
+  "version": "1.0.0",
+  "description": "",
+  "source": "src/index.html",
+  "scripts": {
+    "dev": "parcel src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@svgdotjs/svg.filter.js": "^3.0.8",
+    "@svgdotjs/svg.js": "^3.1.2",
+    "color": "^4.2.3",
+    "color-convert": "^2.0.1"
+  },
+  "devDependencies": {
+    "parcel": "^2.8.3"
+  }
+}
